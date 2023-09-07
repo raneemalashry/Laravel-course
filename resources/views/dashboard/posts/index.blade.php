@@ -1,17 +1,18 @@
 @extends('dashboard.layouts.master')
-@section('title','Posts')
-@section('posts' , 'active')
+@section('title', 'Posts')
+@section('posts', 'active')
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8">
-    <h1 class="mt-4">Posts</h1>
-        </div>
-        <div class="col-md-4">
-    <button class="btn btn-primary text-end" onclick="window.location.href='{{route('dashboard.posts.create')}}'">Create Post</button>
+    <div class="container-fluid">
+        <div class="row mt-5">
+            <div class="col-8">
+                <h1 >Posts</h1>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-primary"
+                    onclick="window.location.href='{{ route('dashboard.posts.create') }}'">Create Post</button>
+            </div>
         </div>
     </div>
-</div>
 @endsection
 @push('scripts')
     <script>

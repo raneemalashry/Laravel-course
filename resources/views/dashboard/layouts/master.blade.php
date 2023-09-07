@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         @include('dashboard.layouts.head')
-        
+
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -12,7 +12,7 @@
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
                 @include('dashboard.layouts.navbar')
-
+                @include('dashboard.layouts.notifications')
 
                     @yield('content')
             </div>
