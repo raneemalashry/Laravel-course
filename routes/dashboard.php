@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 // return view('dashboard.index' ,with($data));
 // });
 // Route::group(['middleware'=>'auth'] , function(){
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('index');
 Route::resource('categories', CategoryController::class);
 Route::resource('posts', PostController::class);
 Route::resource('users', UserController::class);

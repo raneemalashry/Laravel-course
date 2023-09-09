@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\Dashboard\PostController;
 
+use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,27 +32,33 @@ Route::get('/', function () {
 // users/create
 //users/edit
 //users/delete
-Route::get('home', function () {
-    return "Hello From Website  ,  You are not authorizated to access this page";
-})->name('home');
-Route::group(['prefix'=>'users', 'as'=>'users.'] , function(){
+// Route::get('home', function () {
+//     return "Hello From Website  ,  You are not authorizated to access this page";
+// })->name('home');
+// Route::group(['prefix'=>'users', 'as'=>'users.'] , function(){
 
 
-    Route::get('/' , function(){
-        return "Hello From Index Users";
-    })->name('index');
-    Route::get('/show' , function(){
-        return "Hello From Users Show";
-    })->name('show');
+//     Route::get('/' , function(){
+//         return "Hello From Index Users";
+//     })->name('index');
+//     Route::get('/show' , function(){
+//         return "Hello From Users Show";
+//     })->name('show');
 
-    Route::get('/delete' , function(){
-        return "Hello From Users Delete";
-    })->name('delete');
+//     Route::get('/delete' , function(){
+//         return "Hello From Users Delete";
+//     })->name('delete');
 
-});
+// });
 // Route::get('post/index' , [PostController::class , 'index']);
+// route::group(['middleware'=>'auth'] , function(){
 
-Route::resource('posts' , PostController::class);
+    Route::resource('posts' , PostController::class);
+// });
 
 
 
+
+Auth::routes();
+
+Route::get('/', [HomeController::class, 'index'])->name('home');

@@ -22,6 +22,7 @@
                 </tr>
             </thead>
             <tbody>
+                @if(count($categories))
                 @foreach ($categories as $category)
                     <tr>
                         <th scope="row">{{ $loop->index + 1 }} </th>
@@ -51,6 +52,11 @@
                         </td>
                     </tr>
                 @endforeach
+                @else
+                <tr>
+                    <td colspan="3" class="text-center">No Categories Found</td>
+                </tr>
+                @endif
 
             </tbody>
             {{ $categories->links() }}

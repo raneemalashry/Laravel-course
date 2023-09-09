@@ -20,12 +20,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     // Guarded id
-    // protected $guarded= ['id'];
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded= ['id'];
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    //     'is_admin',
+    // ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,4 +47,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //one to many relationship   //user has many posts  hasMany
+    //post has one user belongsTo
+
+    public function posts(){
+        return $this->hasMany(Post::class ,'user_id','id');
+    }
 }

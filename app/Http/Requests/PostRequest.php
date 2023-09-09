@@ -28,11 +28,11 @@ class PostRequest extends FormRequest
         ];
        return $rules;
     }
-    public function messages()
-    {
-        $messages=[
-            'title.required'=>'العنوان مطلوب',
-        ];
-        return $messages;
-    }
+    // public function messages()
+    // {
+        // $messages=[
+        //     'title.required'=>'العنوان مطلوب',
+        // ];
+        // return $messages;
+    // }
 }
