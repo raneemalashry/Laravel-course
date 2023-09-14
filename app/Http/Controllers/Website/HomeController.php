@@ -10,7 +10,17 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts=Post::with('user')->get();
-        return view('home' ,compact('posts'));
+        /// avoid n+1 problem
+        // $posts=Post::whereDoesntHave('categories')->get();
+        // $posts=Post::whereHas('categories')->get();
+        $posts = Post::with('user')->with('categories');
+
+        if (request('search')) {
+            $posts = $posts->where('title', 'like', '%' . request('search') . '%');
+
+        }
+        $posts = $posts->latest()->paginate(2);
+
+        return view('home', compact('posts'));
     }
 }

@@ -21,18 +21,23 @@ class PostRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules= [
-            'title'=>'required|string|max:255',
-            'content'=>'required|string',
+        $rules = [
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,jfif|max:2048',
+            'categories' => 'nullable|array|exists:categories,id',
 
         ];
-       return $rules;
+        if (request()->method('put')) {
+            $rules['image'] = 'nullable|image|mimes:jpeg,png,jpg,gif,svg,jfif|max:2048';
+        }
+        return $rules;
     }
     // public function messages()
     // {
-        // $messages=[
-        //     'title.required'=>'العنوان مطلوب',
-        // ];
-        // return $messages;
+    // $messages=[
+    //     'title.required'=>'العنوان مطلوب',
+    // ];
+    // return $messages;
     // }
 }
