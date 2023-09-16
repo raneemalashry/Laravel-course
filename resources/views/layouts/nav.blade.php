@@ -8,6 +8,17 @@
                 <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li> --}}
+                @foreach (config('app.locales') as $key=>$value)
+                @if(app()->getLocale() != $key)
+                <li class="nav-item">
+
+                <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL($key)}}">
+                  {{$key}}
+                </a>
+                </li>
+                @endif
+
+                @endforeach
                 @guest
                 @if (Route::has('login'))
                     <li class="nav-item">

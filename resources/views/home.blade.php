@@ -5,9 +5,9 @@
     <header class="py-5 bg-light border-bottom mb-4">
         <div class="container">
             <div class="text-center my-5">
-                <h1 class="fw-bolder">Welcome to Blog Home!</h1>
+                <h1 class="fw-bolder">{{__('welcome')}} </h1>
                 @if (auth()->check())
-                    <a class="btn btn-primary btn-lg" type="button" href="{{ route('posts.create') }}">Create New Post</a>
+                    <a class="btn btn-primary btn-lg" type="button" href="{{ route('posts.create') }}">@lang('translate.create_post')</a>
                 @endif
             </div>
         </div>

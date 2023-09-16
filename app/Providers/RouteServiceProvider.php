@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+    // dd(LaravelLocalization::setLocale());
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
@@ -33,8 +35,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
+            Route::middleware(['web','localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ])
+            ->prefix(LaravelLocalization::setLocale())
                 ->group(base_path('routes/web.php'));
+
+
 
             Route::middleware(['web' ,'is-admin' , 'auth'])
             ->prefix('dashboard')
